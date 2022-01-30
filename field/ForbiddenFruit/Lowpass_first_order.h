@@ -15,6 +15,4 @@ void lowpass_first_order_set_cutoff(lowpass_first_order *filt, float fc_Hz);
 
 float lowpass_first_order_update(lowpass_first_order *filt, float inp);
 
-
-
 #endif

@@ -2,6 +2,7 @@
 #include "daisysp.h"
 #include "granular_processor.h"
 #include "Lowpass_first_order.h"
+#include "Highpass_first_order.h"
 
 //#define SHOW_KNOB_VALUES
 #define TOGGLE_FREEZE_ON_HIGH //as opposed to Freezing only while the gate is open
@@ -272,6 +273,7 @@ class ParamControl
 GranularProcessorClouds processor;
 DaisyField              field;
 lowpass_first_order     lpf;
+highpass_first_order    hpf;
 
 // Pre-allocate big blocks in main memory and CCM. No malloc here.
 uint8_t block_mem[118784];
@@ -315,8 +317,8 @@ void AudioCallback(AudioHandle::InputBuffer  in,
 
     for(size_t i = 0; i < size; i++)
     {
-        input[i].l  = in[0][i] * .5f;
-        input[i].r  = in[1][i] * .5f;
+        input[i].l  = highpass_first_order_update(&hpf, (in[0][i] * .5f));
+        input[i].r  = highpass_first_order_update(&hpf, (in[1][i] * .5f));
         output[i].l = output[i].r = 0.f;
     }
 
@@ -432,6 +434,7 @@ int main(void)
     float sample_rate = field.AudioSampleRate();
 
     lowpass_first_order_init(&lpf,1000.0f,sample_rate);
+    highpass_first_order_init(&hpf, 100.0f,sample_rate);
 
     //init the luts
     InitResources(sample_rate);
