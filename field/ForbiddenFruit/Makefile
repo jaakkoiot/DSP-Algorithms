@@ -4,8 +4,8 @@ TARGET = ForbiddenFruit
 # Sources
 CPP_SOURCES += \
 ForbiddenFruit.cpp \
-Lowpass_first_order.cpp \
-Highpass_first_order.cpp \
+dsp/Lowpass_first_order.cpp \
+dsp/Highpass_first_order.cpp \
 dsp/correlator.cpp \
 dsp/granular_processor.cpp \
 dsp/pvoc/frame_transformation.cpp \

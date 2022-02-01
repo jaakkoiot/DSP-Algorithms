@@ -471,6 +471,7 @@ int main(void)
 
     while(1)
     {
+        //Prepare fetches the hardware control values and updates parameters -> in main() so it doesn't interfere the audio callback
         processor.Prepare();
 
         //Since we dont need to update the UI on every execution of the loop only update every nth iteration
@@ -530,13 +531,13 @@ void RenderParams(DISPLAY_PAGE page)
 inline void RenderSplash()
 {
     field.display.SetCursor(17, 2);
-    field.display.WriteString("NIMBUS", Font_16x26, true);
+    field.display.WriteString("TEST:", Font_16x26, true);
     field.display.SetCursor(20, 28);
-    field.display.WriteString("based on Clouds", SMALL_FONT, true);
+    field.display.WriteString("Forbidden fruit", SMALL_FONT, true);
     field.display.SetCursor(32, 38);
-    field.display.WriteString("by Mutable", SMALL_FONT, true);
+    field.display.WriteString("by Mazerunner", SMALL_FONT, true);
     field.display.SetCursor(29, 48);
-    field.display.WriteString("Instruments", SMALL_FONT, true);
+    field.display.WriteString("Devices", SMALL_FONT, true);
 }
 
 inline void RenderCpuUsage()
