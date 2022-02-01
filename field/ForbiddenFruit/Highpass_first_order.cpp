@@ -2,27 +2,27 @@
 
 #define twopi 6.28318530718f
 
-void highpass_first_order_init(highpass_first_order *filt, float fc_Hz, float fs_Hz){
+void highpass_first_order_init(highpass_first_order *filt, float fc, float fs){
 
-    filt->fs_Hz = fs_Hz;            //store sampling freq
-    highpass_first_order_set_cutoff(filt, fc_Hz);
+    filt->fs = fs;            //store sampling freq
+    highpass_first_order_set_cutoff(filt, fc);
 
-    //Reset output and input
+    //Reset output and input during initialisation
     filt->out = 0.0f;
     filt->inp = 0.0f;
 }
 
-void highpass_first_order_set_cutoff(highpass_first_order *filt, float fc_Hz){
+void highpass_first_order_set_cutoff(highpass_first_order *filt, float fc){
 
     //Clamp cutoff freq to stay in bounds (below nyquist limit / positive)
-    if(fc_Hz > (0.5 * filt->fs_Hz)){
-        fc_Hz = (0.5 * filt->fs_Hz);
-    }else if(fc_Hz < 0.0f){
-        fc_Hz = 0.0f;
+    if(fc > (0.5 * filt->fs)){
+        fc = (0.5 * filt->fs);
+    }else if(fc < 0.0f){
+        fc = 0.0f;
     }
 
     //Compute and store filter coefficients -> this is important to save resources performing the differential equation calculations
-    float alpha = twopi * fc_Hz / filt->fs_Hz;  //alpha = 2 * pi * fc / fs
+    float alpha = twopi * fc / filt->fs;  //alpha = 2 * pi * fc / fs
 
     filt->coeff = 1.0f / (1.0f + alpha);    //alpha / (1 + alpha)
 }

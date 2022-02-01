@@ -272,6 +272,8 @@ class ParamControl
 
 GranularProcessorClouds processor;
 DaisyField              field;
+
+ModalVoice              modal;
 lowpass_first_order     lpf;
 highpass_first_order    hpf;
 
