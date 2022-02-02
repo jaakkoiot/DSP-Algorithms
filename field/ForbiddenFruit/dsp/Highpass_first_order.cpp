@@ -24,7 +24,7 @@ void highpass_first_order_set_cutoff(highpass_first_order *filt, float fc){
     //Compute and store filter coefficients -> this is important to save resources performing the differential equation calculations
     float alpha = twopi * fc / filt->fs;  //alpha = 2 * pi * fc / fs
 
-    filt->coeff = 1.0f / (1.0f + alpha);    //alpha / (1 + alpha)
+    filt->coeff = 1.0f / (1.0f + alpha);  //alpha / (1 + alpha)
 }
 
 float highpass_first_order_update(highpass_first_order *filt, float inp){
