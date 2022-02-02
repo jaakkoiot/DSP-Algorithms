@@ -1,6 +1,7 @@
 #ifndef FILTER_LP_FO_H
 #define FILTER_LP_FO_H
 
+/*IRR lp filter*/
 typedef struct{
 
     float out;           //Filter output
