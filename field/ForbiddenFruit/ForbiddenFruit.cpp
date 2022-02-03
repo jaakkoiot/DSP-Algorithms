@@ -43,6 +43,9 @@
 using namespace daisysp;
 using namespace daisy;
 
+lowpass_first_order     lpf;
+highpass_first_order    hpf;
+
 enum DEVICE_STATE
 {
     RUNNING,
@@ -241,6 +244,8 @@ class ParamControl
             case 2:
                 params_->pitch = powf(9.798f * (val - .5f), 2.f);
                 params_->pitch *= val < .5f ? -1.f : 1.f;
+                lowpass_first_order_set_cutoff(&lpf,powf(9.798f * (val - .5f), 2.f));
+                highpass_first_order_set_cutoff(&hpf, powf(9.798f * (val - .5f), 2.f));
                 break;
             case 3: params_->density = val; break;
             case 4: params_->texture = val; break;
@@ -274,8 +279,6 @@ GranularProcessorClouds processor;
 DaisyField              field;
 
 ModalVoice              modal;
-lowpass_first_order     lpf;
-highpass_first_order    hpf;
 
 // Pre-allocate big blocks in main memory and CCM. No malloc here.
 uint8_t block_mem[118784];
