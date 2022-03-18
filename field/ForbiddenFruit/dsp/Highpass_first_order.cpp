@@ -12,6 +12,17 @@ void highpass_first_order_init(highpass_first_order *filt, float fc, float fs){
     filt->inp = 0.0f;
 }
 
+void highpass_first_order_set_samplerate(highpass_first_order *filt, float fs){
+    filt->fs = fs;              //streaming past nyquist-limits
+}
+
+//Compute and store filter coefficients -> this is important to save resources performing the differential equation calculations
+void store_coefficients(highpass_first_order *filt, float fc){
+    float alpha = twopi * fc / filt->fs;  //alpha = 2 * pi * fc / fs
+
+    filt->coeff = 1.0f / (1.0f + alpha);  //alpha / (1 + alpha)
+}
+
 void highpass_first_order_set_cutoff(highpass_first_order *filt, float fc){
 
     //Clamp cutoff freq to stay in bounds (below nyquist limit / positive)
@@ -21,10 +32,7 @@ void highpass_first_order_set_cutoff(highpass_first_order *filt, float fc){
         fc = 0.0f;
     }
 
-    //Compute and store filter coefficients -> this is important to save resources performing the differential equation calculations
-    float alpha = twopi * fc / filt->fs;  //alpha = 2 * pi * fc / fs
-
-    filt->coeff = 1.0f / (1.0f + alpha);  //alpha / (1 + alpha)
+    store_coefficients(filt, fc);
 }
 
 float highpass_first_order_update(highpass_first_order *filt, float inp){

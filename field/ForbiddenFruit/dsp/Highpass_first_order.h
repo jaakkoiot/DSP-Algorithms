@@ -15,6 +15,10 @@ void highpass_first_order_init(highpass_first_order *filt, float fc, float fs);
 
 void highpass_first_order_set_cutoff(highpass_first_order *filt, float fc);
 
+void highpass_first_order_set_samplerate(highpass_first_order *filt, float fs);
+
 float highpass_first_order_update(highpass_first_order *filt, float inp);
+
+void store_coefficients(highpass_first_order *filt, float fc);
 
 #endif
