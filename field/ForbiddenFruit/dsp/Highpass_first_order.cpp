@@ -13,7 +13,14 @@ void highpass_first_order_init(highpass_first_order *filt, float fc, float fs){
 }
 
 void highpass_first_order_set_samplerate(highpass_first_order *filt, float fs){
-    filt->fs = fs;              //streaming past nyquist-limits
+    if(fs > 50){
+        filt->fs = fs;
+    }
+    else{
+        fs = 50;
+        filt->fs = fs;
+    }
+
 }
 
 //Compute and store filter coefficients -> this is important to save resources performing the differential equation calculations
