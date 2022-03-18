@@ -4,7 +4,7 @@
 
 void highpass_first_order_init(highpass_first_order *filt, float fc, float fs){
 
-    filt->fs = fs;            //store sampling freq
+    highpass_first_order_set_samplerate(filt, fs);
     highpass_first_order_set_cutoff(filt, fc);
 
     //Reset output and input during initialisation
