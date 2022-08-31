@@ -32,11 +32,11 @@ void lowpass_first_order_set_samplerate(lowpass_first_order *filt, float fs){
 }
 
 void lowpass_first_order_set_cutoff(lowpass_first_order *filt, float fc){
-
     //Clamp cutoff freq to stay in bounds (below nyquist limit / positive)
-    //if(fc > (0.5 * filt->fs)){
-        //fc = (0.5 * filt->fs);
-    //}
+    if(fc > (0.5 * filt->fs))
+    {
+        fc = (0.5 * filt->fs);
+    }
     if(fc < 0.0f){
         fc = 0.0f;
     }

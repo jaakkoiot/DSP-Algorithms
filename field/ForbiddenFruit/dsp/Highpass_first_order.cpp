@@ -13,11 +13,11 @@ void highpass_first_order_init(highpass_first_order *filt, float fc, float fs){
 }
 
 void highpass_first_order_set_samplerate(highpass_first_order *filt, float fs){
-    if(fs > 50){
+    if(fs > (11000)){
         filt->fs = fs;
     }
     else{
-        fs = 50;
+        fs = 11000;
         filt->fs = fs;
     }
 
