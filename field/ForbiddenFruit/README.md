@@ -1,10 +1,11 @@
 # ForbiddenFruit
 
 ## Author
+Additions on this fork: second order LPF & HPF implementation by Jaakko Nahkala. 
 
-Ported by Gregor Noriskin to the Field from the port by Ben Sergentanis
+Originally ported by Gregor Noriskin to the Daisy Field from the port by Ben Sergentanis
 
-Originally by Emilie Gillet
+The original Clouds is work by Emilie Gillet
 
 ## Description
 
