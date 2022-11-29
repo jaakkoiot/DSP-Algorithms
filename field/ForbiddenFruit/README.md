@@ -1,7 +1,7 @@
 # ForbiddenFruit
 
 ## Author
-Additions on this fork: first order LPF & HPF implementation by Jaakko Nahkala. 
+Additions on this fork: first order IIR LPF & HPF implementation by Jaakko Nahkala. 
 
 Originally ported by Gregor Noriskin to the Daisy Field from the port by Ben Sergentanis
 
