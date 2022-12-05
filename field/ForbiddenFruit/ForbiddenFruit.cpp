@@ -40,6 +40,10 @@
 
 #define PARAM_BUFFER_SIZE 8
 
+//testing scope for audio callback
+#define SCOPE 1
+
+
 using namespace daisysp;
 using namespace daisy;
 
