@@ -322,8 +322,21 @@ void AudioCallback(AudioHandle::InputBuffer  in,
 
     for(size_t i = 0; i < size; i++)
     {
-        input[i].l  = highpass_first_order_update(&hpf, (in[0][i] * .5f));
-        input[i].r  = highpass_first_order_update(&hpf, (in[1][i] * .5f));
+        
+        if(SCOPE){
+            //left = HPF
+            input[i].l  = highpass_first_order_update(&hpf, (in[0][i] * .25f));
+            
+            //right = LPF
+            input[i].r  = highpass_first_order_update(&hpf, (in[1][i] * .25f));
+        }else{
+            
+            //normal operation
+            input[i].l  = highpass_first_order_update(&hpf, (in[0][i] * .5f));
+            input[i].r  = highpass_first_order_update(&hpf, (in[1][i] * .5f));
+        }
+        
+        
         output[i].l = output[i].r = 0.f;
     }
 
